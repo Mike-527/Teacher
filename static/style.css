@@ -1,0 +1,132 @@
+/* static/style.css (最终·毕业版) */
+
+/* --- 1. 全局和基础样式 --- */
+:root {
+    --accent-color: #c94a4a; /* 定义一个优雅的暗红色作为强调色 */
+    --font-serif: 'Playfair Display', serif; /* 定义衬线字体 */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* 定义非衬线字体 */
+}
+
+body {
+    font-family: var(--font-sans);
+    background: #f4f4f4; /* 初始背景保持不变 */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased; /* 优化字体渲染 */
+}
+
+/* --- 2. 动画效果定义 --- */
+.hidden { display: none !important; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+.fade-in { animation: fadeIn 1s forwards; }
+.fade-out { pointer-events: none; animation: fadeOut 1.5s forwards; }
+.fade-in-content { animation: fadeIn 1.5s ease-out forwards; }
+.fade-in-fast { animation: fadeIn 0.5s forwards; }
+.fade-out-fast { animation: fadeOut 0.5s forwards; }
+
+/* 彩虹文字和星空文字的流动动画 */
+@keyframes rainbow-flow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* 星星移动的动画 */
+@keyframes animate-stars {
+    from { transform: translateY(0); }
+    to { transform: translateY(-2000px); }
+}
+
+
+/* --- 3. 开场动画元素 --- */
+#fireworks-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: #000; }
+#start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 20; cursor: pointer; color: white; text-align: center; }
+#start-overlay h1 { font-size: 2.5em; margin-bottom: 10px; letter-spacing: 3px; }
+#start-overlay p { font-size: 1.2em; color: #ddd; }
+
+/* --- 4. 语言选择界面 (高颜值版) --- */
+#language-selection-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 8; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); opacity: 0; }
+.button-container { display: flex; flex-direction: column; gap: 30px; width: 80%; max-width: 400px; }
+.button-container button { width: 100%; padding: 20px 0; font-size: 22px; font-weight: bold; color: white; background: linear-gradient(45deg, #b33939, #e55050); border: none; border-radius: 15px; cursor: pointer; box-shadow: 0 8px 25px rgba(179, 57, 57, 0.4); transition: transform 0.3s ease, box-shadow 0.3s ease; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
+.button-container button:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 12px 35px rgba(179, 57, 57, 0.5); }
+
+/* --- 5. 书本和页面布局 (剧场模式) --- */
+#content-book-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, #2c3e50, #1c2833);
+}
+
+.book-container { width: 100%; }
+.scene { width: 100%; display: flex; justify-content: center; align-items: center; }
+
+.page-content {
+    background: #fff;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 40px 30px;
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    border-top: 5px solid var(--accent-color);
+}
+
+.page-number { font-size: 14px; color: #aaa; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.page-title { font-family: var(--font-sans); font-size: 28px; color: #333; margin-top: 0; margin-bottom: 25px; }
+.page-title.serif { font-family: var(--font-serif); font-weight: 700; font-size: 36px; }
+
+.page-quote { font-family: var(--font-serif); font-style: italic; font-size: 22px; line-height: 1.6; color: #555; margin: 30px auto; max-width: 80%; position: relative; padding: 10px 0; }
+.page-quote::before, .page-quote::after { content: "“"; font-family: var(--font-serif); font-size: 50px; color: var(--accent-color); opacity: 0.3; position: absolute; }
+.page-quote::before { top: -10px; left: -20px; }
+.page-quote::after { content: "”"; bottom: -30px; right: -20px; }
+.book-en .page-quote::before { content: "“"; }
+.book-en .page-quote::after { content: "”"; }
+
+.page-text { font-size: 17px; line-height: 1.8; color: #444; text-align: left; margin-bottom: 20px; }
+.page-signature { text-align: right; font-family: var(--font-serif); font-style: italic; font-size: 20px; margin-top: 40px; }
+.final-blessing { margin-top: 30px; font-weight: bold; color: var(--accent-color); }
+
+.navigation { margin-top: 40px; display: flex; justify-content: space-between; align-items: center; }
+.nav-button { font-family: var(--font-sans); font-size: 16px; font-weight: bold; color: #888; background: transparent; border: none; cursor: pointer; padding: 10px; transition: color 0.3s ease; }
+.nav-button:hover { color: var(--accent-color); }
+.nav-button.next { margin-left: auto; }
+
+/* --- 6. 最终章：星空致谢 --- */
+.page-final-sky {
+    background: linear-gradient(to bottom, #000020, #000);
+    border-top: none;
+    overflow: hidden;
+    position: relative;
+}
+
+.stars, .stars2, .stars3 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.stars { background-image: radial-gradient(1px 1px at 20% 30%, white, transparent), radial-gradient(1px 1px at 80% 60%, white, transparent), radial-gradient(1.5px 1.5px at 50% 50%, white, transparent), radial-gradient(1px 1px at 10% 90%, white, transparent), radial-gradient(1.2px 1.2px at 90% 10%, white, transparent), radial-gradient(1px 1px at 40% 15%, white, transparent), radial-gradient(1.5px 1.5px at 70% 85%, white, transparent); animation: animate-stars 150s linear infinite; }
+.stars2 { background-image: radial-gradient(1px 1px at 30% 20%, white, transparent), radial-gradient(1.5px 1.5px at 60% 80%, white, transparent), radial-gradient(1px 1px at 55% 45%, white, transparent), radial-gradient(1.2px 1.2px at 95% 5%, white, transparent), radial-gradient(1px 1px at 5% 95%, white, transparent), radial-gradient(1.5px 1.5px at 85% 70%, white, transparent); animation: animate-stars 100s linear infinite; }
+.stars3 { background-image: radial-gradient(1px 1px at 25% 35%, white, transparent), radial-gradient(1.2px 1.2px at 75% 65%, white, transparent), radial-gradient(1.5px 1.5px at 45% 55%, white, transparent), radial-gradient(1px 1px at 15% 85%, white, transparent), radial-gradient(1.5px 1.5px at 85% 15%, white, transparent); animation: animate-stars 75s linear infinite; }
+
+.page-final-sky .final-art-text {
+    font-family: var(--font-serif);
+    font-size: 20vw;
+    line-height: 1.1;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, #a7ceff, #ffffff, #a7ceff, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    background-size: 400% 400%;
+    animation: rainbow-flow 8s linear infinite;
+    text-shadow: 0 0 10px rgba(167, 206, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.page-final-sky .nav-button { color: #ccc; font-weight: bold; }
+.page-final-sky .nav-button:hover { color: white; }

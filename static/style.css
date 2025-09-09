@@ -1,22 +1,22 @@
-/* static/style.css (最终·毕业版) */
+/* static/style.css (翰墨画卷 - 最终版) */
 
 /* --- 1. 全局和基础样式 --- */
 :root {
-    --accent-color: #c94a4a; /* 定义一个优雅的暗红色作为强调色 */
-    --font-serif: 'Playfair Display', serif; /* 定义衬线字体 */
-    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* 定义非衬线字体 */
+    --accent-color: #a73c3c; /* 定义一个更稳重的暗红色，如印章的颜色 */
+    --font-serif-sc: 'Noto Serif SC', serif; /* 引入思源宋体作为主要的古典字体 */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 body {
     font-family: var(--font-sans);
-    background: #f4f4f4; /* 初始背景保持不变 */
+    background: #f4f1ea; /* 使用一个偏黄的、类似宣纸的颜色 */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-font-smoothing: antialiased; /* 优化字体渲染 */
+    -webkit-font-smoothing: antialiased;
 }
 
-/* --- 2. 动画效果定义 --- */
+/* --- 2. 动画效果定义 (与之前相同) --- */
 .hidden { display: none !important; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
@@ -25,33 +25,22 @@ body {
 .fade-in-content { animation: fadeIn 1.5s ease-out forwards; }
 .fade-in-fast { animation: fadeIn 0.5s forwards; }
 .fade-out-fast { animation: fadeOut 0.5s forwards; }
+@keyframes rainbow-flow { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+@keyframes animate-stars { from { transform: translateY(0); } to { transform: translateY(-2000px); } }
 
-/* 彩虹文字和星空文字的流动动画 */
-@keyframes rainbow-flow {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
-}
-
-/* 星星移动的动画 */
-@keyframes animate-stars {
-    from { transform: translateY(0); }
-    to { transform: translateY(-2000px); }
-}
-
-
-/* --- 3. 开场动画元素 --- */
+/* --- 3. 开场动画元素 (与之前相同) --- */
 #fireworks-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: #000; }
 #start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 20; cursor: pointer; color: white; text-align: center; }
 #start-overlay h1 { font-size: 2.5em; margin-bottom: 10px; letter-spacing: 3px; }
 #start-overlay p { font-size: 1.2em; color: #ddd; }
 
-/* --- 4. 语言选择界面 (高颜值版) --- */
+/* --- 4. 语言选择界面 (按钮文字已改) --- */
 #language-selection-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 8; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); opacity: 0; }
 .button-container { display: flex; flex-direction: column; gap: 30px; width: 80%; max-width: 400px; }
-.button-container button { width: 100%; padding: 20px 0; font-size: 22px; font-weight: bold; color: white; background: linear-gradient(45deg, #b33939, #e55050); border: none; border-radius: 15px; cursor: pointer; box-shadow: 0 8px 25px rgba(179, 57, 57, 0.4); transition: transform 0.3s ease, box-shadow 0.3s ease; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
-.button-container button:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 12px 35px rgba(179, 57, 57, 0.5); }
+.button-container button { width: 100%; padding: 20px 0; font-size: 22px; font-weight: bold; color: white; background: linear-gradient(45deg, #8c2c2c, #b33939); border: none; border-radius: 15px; cursor: pointer; box-shadow: 0 8px 25px rgba(140, 44, 44, 0.4); transition: transform 0.3s ease, box-shadow 0.3s ease; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
+.button-container button:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 12px 35px rgba(140, 44, 44, 0.5); }
 
-/* --- 5. 书本和页面布局 (剧场模式) --- */
+/* --- 5. 书本和页面布局 (翰墨画卷版) --- */
 #content-book-wrapper {
     width: 100%;
     min-height: 100vh;
@@ -60,50 +49,96 @@ body {
     align-items: center;
     padding: 40px 20px;
     box-sizing: border-box;
-    background: linear-gradient(to bottom, #2c3e50, #1c2833);
+    /* 背景使用宣纸纹理 */
+    background-image: url('https://www.transparenttextures.com/patterns/rice-paper-3.png');
+    background-color: #f4f1ea;
 }
 
 .book-container { width: 100%; }
 .scene { width: 100%; display: flex; justify-content: center; align-items: center; }
 
 .page-content {
-    background: #fff;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    padding: 40px 30px;
-    max-width: 600px;
+    background: rgba(255, 255, 255, 0.7); /* 半透明的白色，透出宣纸背景 */
+    backdrop-filter: blur(5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1); /* 细边框增加质感 */
+    border-radius: 4px; /* 更锐利的直角 */
+    padding: 40px;
+    max-width: 700px;
     width: 100%;
     box-sizing: border-box;
     text-align: center;
-    border-top: 5px solid var(--accent-color);
 }
 
-.page-number { font-size: 14px; color: #aaa; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
-.page-title { font-family: var(--font-sans); font-size: 28px; color: #333; margin-top: 0; margin-bottom: 25px; }
-.page-title.serif { font-family: var(--font-serif); font-weight: 700; font-size: 36px; }
+.page-number { font-family: var(--font-serif-sc); font-size: 14px; color: #888; margin-bottom: 20px; }
+.page-title { font-family: var(--font-serif-sc); font-size: 32px; font-weight: 700; color: #333; margin-top: 0; margin-bottom: 30px; }
+.page-title.serif { font-family: var(--font-serif-sc); font-size: 40px; } /* 扉页标题更大 */
 
-.page-quote { font-family: var(--font-serif); font-style: italic; font-size: 22px; line-height: 1.6; color: #555; margin: 30px auto; max-width: 80%; position: relative; padding: 10px 0; }
-.page-quote::before, .page-quote::after { content: "“"; font-family: var(--font-serif); font-size: 50px; color: var(--accent-color); opacity: 0.3; position: absolute; }
-.page-quote::before { top: -10px; left: -20px; }
-.page-quote::after { content: "”"; bottom: -30px; right: -20px; }
-.book-en .page-quote::before { content: "“"; }
-.book-en .page-quote::after { content: "”"; }
+.page-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    /* 照片的宣纸毛边效果 */
+    border: 10px solid white;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.1);
+}
 
-.page-text { font-size: 17px; line-height: 1.8; color: #444; text-align: left; margin-bottom: 20px; }
-.page-signature { text-align: right; font-family: var(--font-serif); font-style: italic; font-size: 20px; margin-top: 40px; }
-.final-blessing { margin-top: 30px; font-weight: bold; color: var(--accent-color); }
+.image-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.page-quote {
+    font-family: var(--font-serif-sc);
+    font-size: 20px;
+    line-height: 1.8;
+    color: #555;
+    margin: 30px auto;
+    max-width: 90%;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 20px;
+    text-align: left;
+}
+
+.page-text {
+    font-family: var(--font-serif-sc);
+    font-size: 18px;
+    line-height: 2; /* 更大的行高，提升阅读体验 */
+    color: #333;
+    text-align: left;
+    margin-bottom: 20px;
+}
+.page-signature {
+    text-align: right;
+    font-family: var(--font-serif-sc);
+    font-size: 20px;
+    margin-top: 40px;
+}
 
 .navigation { margin-top: 40px; display: flex; justify-content: space-between; align-items: center; }
-.nav-button { font-family: var(--font-sans); font-size: 16px; font-weight: bold; color: #888; background: transparent; border: none; cursor: pointer; padding: 10px; transition: color 0.3s ease; }
+.nav-button {
+    font-family: var(--font-serif-sc);
+    font-size: 16px;
+    font-weight: bold;
+    color: #888;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
 .nav-button:hover { color: var(--accent-color); }
 .nav-button.next { margin-left: auto; }
 
-/* --- 6. 最终章：星空致谢 --- */
+/* --- 6. 最终章：星空致谢 (保持不变) --- */
 .page-final-sky {
     background: linear-gradient(to bottom, #000020, #000);
     border-top: none;
     overflow: hidden;
     position: relative;
+    border: none;
 }
 
 .stars, .stars2, .stars3 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -111,11 +146,11 @@ body {
 .stars2 { background-image: radial-gradient(1px 1px at 30% 20%, white, transparent), radial-gradient(1.5px 1.5px at 60% 80%, white, transparent), radial-gradient(1px 1px at 55% 45%, white, transparent), radial-gradient(1.2px 1.2px at 95% 5%, white, transparent), radial-gradient(1px 1px at 5% 95%, white, transparent), radial-gradient(1.5px 1.5px at 85% 70%, white, transparent); animation: animate-stars 100s linear infinite; }
 .stars3 { background-image: radial-gradient(1px 1px at 25% 35%, white, transparent), radial-gradient(1.2px 1.2px at 75% 65%, white, transparent), radial-gradient(1.5px 1.5px at 45% 55%, white, transparent), radial-gradient(1px 1px at 15% 85%, white, transparent), radial-gradient(1.5px 1.5px at 85% 15%, white, transparent); animation: animate-stars 75s linear infinite; }
 
-.page-final-sky .final-art-text {
-    font-family: var(--font-serif);
+.final-art-text {
+    font-family: var(--font-serif-sc); /* 统一使用宋体书法字 */
     font-size: 20vw;
     line-height: 1.1;
-    font-weight: 900;
+    font-weight: 700;
     text-align: center;
     margin-bottom: 40px;
     background: linear-gradient(90deg, #a7ceff, #ffffff, #a7ceff, #ffffff);

@@ -1,0 +1,247 @@
+<!-- templates/index.html (最终·毕业版) -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Gift for Ms. Xu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- 引入一个优雅的英文字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 开场动画部分 -->
+    <div id="fireworks-container"></div>
+    <div id="start-overlay">
+        <div class="start-text"><h1>A Special Gift</h1><p>Please Tap to Unveil</p></div>
+    </div>
+    <div id="language-selection-screen" class="hidden">
+        <div class="button-container">
+            <button id="btn-zh">中文篇章</button>
+            <button id="btn-en">English Chapters</button>
+        </div>
+    </div>
+
+    <!-- 最终内容容器 -->
+    <div id="content-book-wrapper" class="hidden">
+
+        <!-- ================= 中文篇章 ================= -->
+        <div id="book-zh" class="book-container hidden">
+
+            <!-- Chapter 1: 扉页 -->
+            <div id="zh-scene-1" class="scene">
+                <div class="page-content">
+                    <h1 class="page-title serif">亲爱的徐老师：</h1>
+                    <p class="page-text">我们初次相遇在高一的尾声，那本是一场短暂的代课，我却未曾想到，这段缘分会如此深厚，竟成了我们之间长达两年的美好羁绊。</p>
+                    <p class="page-text">请开启这本小小的纪念册，重温那些我们共同走过的时光。</p>
+                    <p class="page-signature">您的学生：刘畅</p>
+                    <div class="navigation">
+                        <button class="nav-button next" data-target="zh-scene-2">下一章 →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 2: “不怕出丑”的我 -->
+            <div id="zh-scene-2" class="scene hidden">
+                <div class="page-content">
+                    <p class="page-number">Chapter I</p>
+                    <h2 class="page-title">“不怕出丑”的我</h2>
+                    <blockquote class="page-quote">“我最不擅长的科目，反而让我们有了最深的交集。”</blockquote>
+                    <p class="page-text">我的英语成绩总是不尽人意，课堂上也常常闹出笑话。但或许正是因为我这种“不怕出丑”的性格，无论是在教室还是办公室，您都成了与我互动最多的老师。那些看似尴尬的瞬间，如今都成了温暖的回忆。</p>
+                    <div class="navigation">
+                        <button class="nav-button prev" data-target="zh-scene-1">← 上一章</button>
+                        <button class="nav-button next" data-target="zh-scene-3">下一章 →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 3: 学习小组 -->
+            <div id="zh-scene-3" class="scene hidden">
+                 <div class="page-content">
+                    <p class="page-number">Chapter II</p>
+                    <h2 class="page-title">“学习小组”的时光</h2>
+                    <blockquote class="page-quote">“那时的痛苦是真实的，但那段回忆是无价的。”</blockquote>
+                    <p class="page-text">后来，我们成立了“学习小组”。现在回想，学习的过程确实充满挣扎与痛苦，但那些共同奋斗的日子，却是如此的珍贵。时光无法倒流，如果再给我一次机会……我想，我大概还是那个爱惹麻烦的我吧。</p>
+                    <div class="navigation">
+                        <button class="nav-button prev" data-target="zh-scene-2">← 上一章</button>
+                        <button class="nav-button next" data-target="zh-scene-4">下一章 →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 4: 回望与前行 -->
+            <div id="zh-scene-4" class="scene hidden">
+                <div class="page-content">
+                    <p class="page-number">Epilogue</p>
+                    <h2 class="page-title">回望与前行</h2>
+                    <blockquote class="page-quote">“如今我已是大三学生，但您的教诲，我从未忘记。”</blockquote>
+                    <p class="page-text">回头看看，我已不再是那个懵懂的高中生。谢谢您，徐老师。有机会我一定会回来看望您，也许……还会再“烦”您一下！</p>
+                    <p class="page-text final-blessing">最后，祝您工作顺利，身体健康，也祝弟弟妹妹们学业猛进，成绩爆表！</p>
+                    <div class="navigation">
+                        <button class="nav-button prev" data-target="zh-scene-3">← 上一章</button>
+                        <button class="nav-button next" data-target="zh-scene-5">致谢 →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 5: 最终致谢 (星空版) -->
+            <div id="zh-scene-5" class="scene hidden">
+                <div class="page-content page-final-sky">
+                    <div class="stars"></div>
+                    <div class="stars2"></div>
+                    <div class="stars3"></div>
+                    <div class="final-art-text">
+                        衷心<br>感谢
+                    </div>
+                    <div class="navigation">
+                        <button class="nav-button prev" data-target="zh-scene-4">← 返回</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= English Chapters ================= -->
+        <div id="book-en" class="book-container hidden">
+
+            <!-- Chapter 1: Title Page -->
+            <div id="en-scene-1" class="scene">
+                 <div class="page-content">
+                    <h1 class="page-title serif">Dear Ms. Xu,</h1>
+                    <p class="page-text">We first met near the end of my 10th-grade year. You were supposed to be a temporary substitute, but I never imagined that our connection would grow so deep, turning a brief encounter into a cherished two-year journey.</p>
+                    <p class="page-text">Please turn the pages of this little memento to revisit the moments we shared.</p>
+                    <p class="page-signature">Your Student, Liu Chang</p>
+                    <div class="navigation">
+                        <button class="nav-button next" data-target="en-scene-2">Next Chapter →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 2: The Fearless Student -->
+            <div id="en-scene-2" class="scene hidden">
+                <div class="page-content">
+                    <p class="page-number">Chapter I</p>
+                    <h2 class="page-title">The Fearless Student</h2>
+                    <blockquote class="page-quote serif">“My weakest subject somehow led to our strongest bond.”</blockquote>
+                    <p class="page-text">My English grades were never great, and I made my fair share of jokes in class. But perhaps it was because of my "fearless" nature that you became the teacher I interacted with the most. Those seemingly awkward moments have now become my warmest memories.</p>
+                    <div class="navigation">
+                        <button class="nav-button prev" data-target="en-scene-1">← Prev. Chapter</button>
+                        <button class="nav-button next" data-target="en-scene-3">Next Chapter →</button>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Chapter 3: The Study Group -->
+            <div id="en-scene-3" class="scene hidden">
+                 <div class="page-content">
+                    <p class="page-number">Chapter II</p>
+                    <h2 class="page-title">The Study Group</h2>
+                    <blockquote class="page-quote serif">“The struggle was real, but the memories are priceless.”</blockquote>
+                    <p class="page-text">Later, we formed the "Study Group." Looking back, the learning process was indeed a struggle, but those days we spent working hard together are so precious. Time can't be turned back, and if I had another chance... well, I'd probably still be the same troublemaker.</p>
+                    <div class="navigation">
+                        <button class="nav-button prev" data-target="en-scene-2">← Prev. Chapter</button>
+                        <button class="nav-button next" data-target="en-scene-4">Next Chapter →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 4: A Look Back, A Look Forward -->
+            <div id="en-scene-4" class="scene hidden">
+                <div class="page-content">
+                    <p class="page-number">Epilogue</p>
+                    <h2 class="page-title">A Look Back, A Look Forward</h2>
+                    <blockquote class="page-quote serif">“I'm a university junior now, but I have never forgotten what you taught me.”</blockquote>
+                    <p class="page-text">Looking back, I'm no longer that clueless high school kid. Thank you, Ms. Xu. I will definitely come back to visit you when I have the chance, and maybe... bother you just one more time!</p>
+                    <p class="page-text final-blessing">Finally, I wish you all the best in your work, good health, and may your younger siblings (or kids) achieve outstanding results in their studies!</p>
+                    <div class="navigation">
+                        <button class="nav-button prev" data-target="en-scene-3">← Prev. Chapter</button>
+                        <button class="nav-button next" data-target="en-scene-5">With Thanks →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 5: Final Thanks (Starry Sky Version) -->
+            <div id="en-scene-5" class="scene hidden">
+                <div class="page-content page-final-sky">
+                    <div class="stars"></div>
+                    <div class="stars2"></div>
+                    <div class="stars3"></div>
+                    <div class="final-art-text">
+                        With<br>Thanks
+                    </div>
+                    <div class="navigation">
+                        <button class="nav-button prev" data-target="en-scene-4">← Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入外部JS库 -->
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.10.7/dist/index.umd.js"></script>
+
+    <!-- 最终安全版JS -->
+    <script>
+        // --- 获取所有元素 ---
+        const fireworksContainer = document.getElementById('fireworks-container');
+        const startOverlay = document.getElementById('start-overlay');
+        const langScreen = document.getElementById('language-selection-screen');
+        const btnZh = document.getElementById('btn-zh');
+        const btnEn = document.getElementById('btn-en');
+        const contentWrapper = document.getElementById('content-book-wrapper');
+        const bookZh = document.getElementById('book-zh');
+        const bookEn = document.getElementById('book-en');
+
+        // --- 开场动画逻辑 (加了“防弹衣”) ---
+        startOverlay.addEventListener('click', () => {
+            startOverlay.classList.add('fade-out');
+            try {
+                const fireworks = new Fireworks.default(fireworksContainer);
+                fireworks.start();
+            } catch (e) {
+                console.error("烟花效果启动失败:", e);
+            }
+            setTimeout(() => {
+                langScreen.classList.remove('hidden');
+                langScreen.classList.add('fade-in');
+                fireworksContainer.classList.add('fade-out');
+            }, 4000);
+        }, { once: true });
+
+        // --- 语言选择逻辑 ---
+        btnZh.addEventListener('click', () => showBook(bookZh));
+        btnEn.addEventListener('click', () => showBook(bookEn));
+
+        function showBook(bookElement) {
+            langScreen.classList.add('fade-out');
+            setTimeout(() => {
+                langScreen.style.display = 'none';
+                contentWrapper.classList.remove('hidden');
+                bookElement.classList.remove('hidden');
+                contentWrapper.classList.add('fade-in-content');
+            }, 500);
+        }
+
+        // --- 翻页逻辑 ---
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const currentScene = button.closest('.scene');
+                const targetSceneId = button.dataset.target;
+                const targetScene = document.getElementById(targetSceneId);
+
+                currentScene.classList.add('fade-out-fast');
+                setTimeout(() => {
+                    currentScene.classList.add('hidden');
+                    currentScene.classList.remove('fade-out-fast');
+
+                    targetScene.classList.remove('hidden');
+                    targetScene.classList.add('fade-in-fast');
+                    window.scrollTo(0, 0);
+                }, 400);
+            });
+        });
+    </script>
+</body>
+</html>
